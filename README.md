@@ -2,6 +2,26 @@
 
 This module serves as a template for the private module in [`flake.nix`](https://github.com/ttimasdf/nixos-config/blob/main/flake.nix) within [ttimasdf/nixos-config](https://github.com/ttimasdf/nixos-config).
 
+## Public shim
+
+As published, this repository is a **no-op shim**. It declares the
+`rabitprivate.nixos.*` options that the reference configuration sets
+(see [`modules/nixos/private-options.nix`](modules/nixos/private-options.nix))
+and does nothing when they are enabled. That is enough for the public
+`ttimasdf/nixos-config` flake to evaluate and pass `nix flake check` without
+access to the private repository.
+
+Real deployments override the `private-module` input with their private
+checkout instead:
+
+```bash
+nix build --override-input private-module path:./private
+```
+
+So the committed `flake.nix` of the reference configuration points
+`private-module` at this repository, and the `xc` build/switch tasks override
+it with the local private clone.
+
 ## Usage
 
 ### Adding the private flake into your public flake

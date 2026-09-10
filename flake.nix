@@ -2,6 +2,8 @@
   description = "KnownRabbit's Private NixOS Config Module (Placeholder)";
 
   inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+
     # Helpers used as inputs for other flakes
     flake-parts.url = "github:hercules-ci/flake-parts";
     nixos-unified.url = "github:srid/nixos-unified";
